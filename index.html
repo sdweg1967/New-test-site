@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Контур Жизни</title>
+    <link rel="stylesheet" href="app.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4CAF50">
+    <link rel="icon" href="icons/icon-192.png">
+</head>
+<body>
+    <!-- Верхняя панель -->
+    <header class="header">
+        <h1>🌳 Контур Жизни</h1>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    </header>
+
+    <!-- Боковое меню (скрыто) -->
+    <nav class="side-menu" id="sideMenu">
+        <button class="close-menu" onclick="toggleMenu()">✕</button>
+        <div class="menu-section">
+            <h3>Сферы</h3>
+            <div id="spheresList"></div>
+        </div>
+        <div class="menu-section">
+            <h3>Настройки</h3>
+            <button onclick="exportData()">📤 Экспорт данных</button>
+            <button onclick="clearData()">🗑️ Очистить</button>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <main class="main-content">
+        <!-- Дерево баланса -->
+        <section class="tree-section">
+            <canvas id="treeCanvas" width="300" height="300"></canvas>
+            <div class="tree-stats">
+                <div id="balanceScore">Баланс: 0%</div>
+                <div id="todayProgress">Сегодня: 0 задач</div>
+            </div>
+        </section>
+
+        <!-- Быстрое добавление задачи -->
+        <section class="quick-add">
+            <input type="text" id="taskInput" placeholder="Новая задача..." maxlength="50">
+            <div class="sphere-selector">
+                <select id="sphereSelect">
+                    <option value="finance">💰 Финансы</option>
+                    <option value="health">🏥 Здоровье</option>
+                    <option value="career">💼 Карьера</option>
+                    <option value="rest">😴 Отдых</option>
+                    <option value="family">👨‍👩‍👧 Семья</option>
+                    <option value="development">📚 Развитие</option>
+                    <option value="creativity">🎨 Творчество</option>
+                    <option value="environment">🌍 Окружение</option>
+                </select>
+                <button onclick="addQuickTask()">+</button>
+            </div>
+        </section>
+
+        <!-- Список задач -->
+        <section class="tasks-section">
+            <h2>Задачи сегодня</h2>
+            <div id="tasksList"></div>
+        </section>
+
+        <!-- Прогресс по сферам -->
+        <section class="progress-section">
+            <h2>Прогресс сфер</h2>
+            <div id="progressBars"></div>
+        </section>
+    </main>
+
+    <!-- Нижняя навигация -->
+    <footer class="bottom-nav">
+        <button onclick="showToday()" class="nav-btn active">📅 Сегодня</button>
+        <button onclick="showTree()" class="nav-btn">🌳 Дерево</button>
+        <button onclick="showAnalytics()" class="nav-btn">📊 Аналитика</button>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
